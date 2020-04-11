@@ -1,24 +1,24 @@
-# Logical operators
+# عملگرهای منطقی
 
-There are three logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+سه نوع عملگر منطقی در جاوااسکریپت داریم: `||` (یا), `&&` (و), `!` (نقیض).
 
-Although they are called "logical", they can be applied to values of any type, not only boolean. Their result can also be of any type.
+با اینکه این عملگرها منطقی نامیده میشوند، نه تنها روی داده های Boolean بلکه روی داده هایی با انواع دیگر هم عمل می کنند. همچنین خروجی آن نیز می تواند هر نوع داده ای باشد.
 
-Let's see the details.
+بیایید نگاهی به جزییات بیاندازیم.
 
-## || (OR)
+## || (یا)
 
-The "OR" operator is represented with two vertical line symbols:
+عملگر "یا" با دو کاراکتر خط عمودی نشان داده می شود:
 
 ```js
 result = a || b;
 ```
 
-In classical programming, the logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, it returns `true`, otherwise it returns `false`.
+در برنامه نویسی کلاسیک، "یا"ی منطقی تنها برای کار با داده های Boolean بکار میرود. اگر یکی از آرگومان ها مقدار true داشته باشد، این عملگر مقدار true را و در غیر اینصورت (اگر هیچیک از آرگومان ها true نباشد) مقدار false را بر میگرداند.
 
-In JavaScript, the operator is a little bit trickier and more powerful. But first, let's see what happens with boolean values.
+در جاواسکریپت، این عملگر کمی ماهرانه تر و قدرتمند تر است. ابتدا اجازه دهید ببینیم روی مقادیر Boolean چگونه کار میکند.
 
-There are four possible logical combinations:
+در کل چهار ترکیب منطقی وجود دارد:
 
 ```js run
 alert( true || true );   // true
@@ -27,11 +27,11 @@ alert( true || false );  // true
 alert( false || false ); // false
 ```
 
-As we can see, the result is always `true` except for the case when both operands are `false`.
+همانگونه که می بینیم نتیجه همیشه true است، غیر از زمانی که هر دو عملوند (گزاره منطقی) برابر با false (نادرست) باشند.
 
-If an operand is not a boolean, it's converted to a boolean for the evaluation.
+اگر یک عملوند Boolean نباشد، برای محاسبه تبدیل به نوع Boolean می شود.
 
-For instance, the number `1` is treated as `true`, the number `0` as `false`:
+برای نمونه، عدد یک بعنوان true و عدد صفر یک گزاره false ارزیابی خواهد شد:
 
 ```js run
 if (1 || 0) { // works just like if( true || false )
@@ -39,9 +39,9 @@ if (1 || 0) { // works just like if( true || false )
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is `true`.
+بیشتر اوقات، "یا"ی منطقی `||` در دستور if بکار می رود تا درست بودن یکی از شروط را بررسی کند.
 
-For example:
+به عنوان نمونه:
 
 ```js run
 let hour = 9;
@@ -53,7 +53,7 @@ if (hour < 10 || hour > 18) {
 }
 ```
 
-We can pass more conditions:
+میتوانیم از شروط بیشتری هم استفاده کنیم:
 
 ```js run
 let hour = 12;
@@ -64,19 +64,19 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-## OR finds the first truthy value
+## "یا"ی منطقی اولین عبارت true را می یابد
 
-The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
+منطقی که در بالا شرح داده شد روش کلاسیک بود. بیایید نکات بیشتری که در جاوااسکریپت وجود دارد را مطرح کنیم.
 
-The extended algorithm works as follows.
+الگوریتم عملکرد "یا"ی منطقی در جاوااسکریپت اینگونه است:
 
-Given multiple OR'ed values:
+فرض کنید در یک خط از چند "یا"ی منطقی استفاده شده است:
 
 ```js
 result = value1 || value2 || value3;
 ```
 
-The OR `||` operator does the following:
+عملگر `||` عملیات زیر را انجام می دهد:
 
 - Evaluates operands from left to right.
 - For each operand, converts it to boolean. If the result is `true`, stops and returns the original value of that operand.
